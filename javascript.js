@@ -36,6 +36,7 @@
        chooses paper, then... */
         // User wins. Your selection beats computer selection
         // Add one to user score.
+    
     /* If one of the following: user chooses rock and computer chooses paper OR user
        chooses paper and computer chooses scissors OR user chooses scissors and computer
        chooses rock, then... */
