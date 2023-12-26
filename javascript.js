@@ -1,7 +1,8 @@
 // Checks if one of three choices is selected
 function selectionChecker(playerSelection) {
     while(true) {
-        if(playerSelection === ( "rock" || "paper" || "scissors" )) {
+        if(playerSelection === "rock" || playerSelection === "paper" || 
+            playerSelection === "scissors" ) {
             return playerSelection;
         } else {
             console.log("Please choose one from the three options provided");
@@ -31,10 +32,10 @@ function playRound(playerSelection, computerSelection) {
     chooses paper, then... */
         // User wins. Your selection beats computer selection
         // Add one to user score.
-    if( (userSelection === "rock" && computerChoice === "scissors") ||
-        (userSelection === "paper" && computerChoice === "rock") ||
-        (userSelection === "scissors" && computerChoice === "paper") ) {
-            console.log("User wins! Your selection beats computer selection.");
+    if( (playerSelection === "rock" && computerSelection === "scissors") ||
+        (playerSelection === "paper" && computerSelection === "rock") ||
+        (playerSelection === "scissors" && computerSelection === "paper") ) {
+            console.log("You Win! " + playerSelection + " beats " + computerSelection);
             userScore += 1;
     }
 
@@ -43,35 +44,38 @@ function playRound(playerSelection, computerSelection) {
     chooses rock, then... */
         // User loses. Computer selection beats your selection
         // Add one to computer score
-    else if( (userSelection === "rock" && computerChoice === "paper") ||
-        (userSelection === "paper" && computerChoice === "scissors") ||
-        (userSelection === "scissors" && computerChoice === "rock") ) {
-            console.log("User loses! Computer selection beats your selection.");
+    else if((playerSelection === "rock" && computerSelection === "paper") ||
+        (playerSelection === "paper" && computerSelection === "scissors") ||
+        (playerSelection === "scissors" && computerSelection === "rock") ) {
+            console.log("You Lose! " + computerSelection + " beats " + playerSelection);
             computerScore += 1;
     }
 
     // If user and computer are tied
         // Play reround
     else {
-        let userSelection = prompt("Please choose rock, paper, or scissors: ");
-        selectionChecker(userSelection.toLowerCase());
+        let playerSelection = prompt("Please choose rock, paper, or scissors: ");
+        selectionChecker(playerSelection.toLowerCase());
     }
 }
 
 // Loop five times
 // Game play program
 // function game() {
-    for(let i = 0; i < 5; i ++) {
-        let playerSelection = prompt("Please choose rock, paper, or scissors: ");
-        selectionChecker(playerSelection.toLowerCase());
-        console.log(playerSelection);
-        let computerSelection = getComputerChoice();
-        console.log(computerSelection);
-        playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
-    }
+function game() {
+    let playerSelection = prompt("Please choose rock, paper, or scissors: ");
+    selectionChecker(playerSelection.toLowerCase());
+    console.log(playerSelection);
+    let computerSelection = getComputerChoice();
+    console.log(computerSelection);
+    playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+}
 // }
 
-// let result = game();
+for(i = 0; i < 5; i++) {
+    const result[i] = game();
+    console.log(result[i]);
+}
 
 // If user has more points than computer
     // Display message that user is the winner
