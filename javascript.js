@@ -64,17 +64,20 @@ function playRound(playerSelection, computerSelection) {
 // function game() {
 function game() {
     let playerSelection = prompt("Please choose rock, paper, or scissors: ");
-    selectionChecker(playerSelection.toLowerCase());
-    console.log(playerSelection);
-    let computerSelection = getComputerChoice();
-    console.log(computerSelection);
-    playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+    if(playerSelection != null) {
+        playerSelection = selectionChecker(playerSelection.toLowerCase());
+        console.log(playerSelection);
+        let computerSelection = getComputerChoice();
+        // console.log(computerSelection);
+        playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+    }
 }
 // }
 
+const results = [];
 for(i = 0; i < 5; i++) {
-    const result[i] = game();
-    console.log(result[i]);
+    results[i] = game();
+    // console.log(results[i]);
 }
 
 // If user has more points than computer
