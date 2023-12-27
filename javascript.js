@@ -54,8 +54,8 @@ function playRound(playerSelection, computerSelection) {
     // If user and computer are tied
         // Play reround
     else {
-        let playerSelection = prompt("Please choose rock, paper, or scissors: ");
-        selectionChecker(playerSelection.toLowerCase());
+        console.log("You and computer are tied. Please try again!");
+        game();
     }
 }
 
@@ -70,6 +70,8 @@ function game() {
         let computerSelection = getComputerChoice();
         // console.log(computerSelection);
         playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+    } else {
+        return null;
     }
 }
 // }
@@ -77,6 +79,9 @@ function game() {
 const results = [];
 for(i = 0; i < 5; i++) {
     results[i] = game();
+    if(results[i] === null) {
+        break;
+    }
     // console.log(results[i]);
 }
 
