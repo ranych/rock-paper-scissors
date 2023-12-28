@@ -7,6 +7,7 @@ function selectionChecker(playerSelection) {
         } else {
             console.log("Please choose one from the three options provided");
             playerSelection = prompt("Please choose rock, paper, or scissors: ");
+            playerSelection = playerSelection.toLowerCase();
             true;
         }
     }
@@ -36,7 +37,7 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper") ) {
             console.log("You Win! " + playerSelection + " beats " + computerSelection);
-            userScore += 1;
+            return userScore;
     }
 
     /* If one of the following: user chooses rock and computer chooses paper OR user
@@ -48,7 +49,7 @@ function playRound(playerSelection, computerSelection) {
         (playerSelection === "paper" && computerSelection === "scissors") ||
         (playerSelection === "scissors" && computerSelection === "rock") ) {
             console.log("You Lose! " + computerSelection + " beats " + playerSelection);
-            computerScore += 1;
+            return computerScore;
     }
 
     // If user and computer are tied
@@ -76,23 +77,43 @@ function game() {
 }
 // }
 
+// Checks final score and announces the winner
+function scoreChecker() {
+    // If user has more points than computer
+        // Display message that user is the winner
+    if(userScore > computerScore) {
+        let logMessage = console.log("User is the winner!");
+        return logMessage;
+    }
+
+    // If computer has more points than user
+        // Display message that computer is the winner
+    if(computerScore > userScore) {
+        let logMessage = console.log("Computer is the winner!");
+        return logMessage;
+    }
+}
+
+// Main program running
 const results = [];
-for(i = 0; i < 5; i++) {
+let i = 0;
+while(i < 5) {
     results[i] = game();
     if(results[i] === null) {
         break;
+    } else {
+        if(results[i] == userScore) {
+            userScore += 1;
+        } else {
+            computerScore += 1;
+        }
     }
+    console.log(i);
+    i += 1;
+
     // console.log(results[i]);
-}
-
-// If user has more points than computer
-    // Display message that user is the winner
-if(userScore > computerScore) {
-    console.log("User is the winner!");
-}
-
-// If computer has more points than user
-    // Display message that computer is the winner
-if(computerScore > userScore) {
-    console.log("Computer is the winner!");
+    if(i == 5) {
+        let finalResult = scoreChecker();
+        console.log(finalResult);
+    }
 }
