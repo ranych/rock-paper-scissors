@@ -56,6 +56,8 @@ function playRound(playerSelection, computerSelection) {
         // Play reround
     else {
         console.log("You and computer are tied. Please try again!");
+        userScore += 0;
+        computerScore += 0;
         game();
     }
 }
@@ -108,7 +110,7 @@ while(i < 5) {
             computerScore += 1;
         }
     }
-    console.log(i);
+
     i += 1;
 
     // console.log(results[i]);
