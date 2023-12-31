@@ -71,9 +71,7 @@ function playRound(playerSelection, computerSelection) {
     }
 }
 
-// Loop five times
 // Game play program
-// function game() {
 function game() {
     let playerSelection = prompt("Please choose rock, paper, or scissors: ");
     if(playerSelection != null) {
@@ -97,32 +95,8 @@ function game() {
         return null;
     }
 }
-// }
 
-// Main program running
-// const results = [];
-/* let i = 0;
-while(i < 5) {
-    let result = game();
-    if(result === null) {
-        break;
-    } else {
-        if(result == userWinsMessage) {
-            userScore += 1;
-        } else {
-            computerScore += 1;
-        }
-    }
-
-    i += 1;
-
-    // console.log(results[i]);
-    if(i == 5) {
-        let finalResult = scoreChecker();
-        console.log(finalResult);
-    }
-} */
-
+// Loop five times
 let i = 0;
 while(i < 5) {
     let result = game();
@@ -132,10 +106,8 @@ while(i < 5) {
         break;
     }
         
-    // console.log(results[i]);
+    // Checks final score and announces the winner
     if(i == 5) {
-        // Checks final score and announces the winner
-        // function scoreChecker() {
         // If user has more points than computer
             // Display message that user is the winner
             if(userScore > computerScore) {
@@ -147,6 +119,5 @@ while(i < 5) {
             if(computerScore > userScore) {
                 console.log("Computer is the winner!");
             }
-        // }
     }
 }
