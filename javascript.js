@@ -13,7 +13,9 @@ function selectionChecker(playerSelection) {
             playerSelection = prompt("Please choose rock, paper, or scissors: ");
             // playerSelection = playerSelection.toLowerCase();
             if(playerSelection != null) {
-                playerSelection.toLowerCase();
+                playerSelection = playerSelection.toLowerCase();
+            } else {
+                break;
             }
             true;
         }
