@@ -1,3 +1,7 @@
+// Set variables to keep track of score
+let userScore = 0;
+let computerScore = 0;
+
 // Checks if one of three choices is selected
 function selectionChecker(playerSelection) {
     while(true) {
@@ -7,7 +11,10 @@ function selectionChecker(playerSelection) {
         } else {
             console.log("Please choose one from the three options provided");
             playerSelection = prompt("Please choose rock, paper, or scissors: ");
-            playerSelection = playerSelection.toLowerCase();
+            // playerSelection = playerSelection.toLowerCase();
+            if(playerSelection != null) {
+                playerSelection.toLowerCase();
+            }
             true;
         }
     }
@@ -23,10 +30,6 @@ function getComputerChoice() {
     return chosenString;
 }
 
-// Set variables to keep track of score
-let userScore = 0;
-let computerScore = 0;
-
 function playRound(playerSelection, computerSelection) {
     /* If one of the following: user chooses rock and computer chooses scissors OR
     user chooses paper and computer chooses rock OR user chooses scissors and computer
@@ -36,8 +39,9 @@ function playRound(playerSelection, computerSelection) {
     if( (playerSelection === "rock" && computerSelection === "scissors") ||
         (playerSelection === "paper" && computerSelection === "rock") ||
         (playerSelection === "scissors" && computerSelection === "paper") ) {
-            console.log("You Win! " + playerSelection + " beats " + computerSelection);
-            return userScore;
+            let userWinsMessage = `You Win! ${playerSelection} beats ${computerSelection}.`;
+            console.log(userWinsMessage);
+            return userWinsMessage;
     }
 
     /* If one of the following: user chooses rock and computer chooses paper OR user
@@ -48,16 +52,19 @@ function playRound(playerSelection, computerSelection) {
     else if((playerSelection === "rock" && computerSelection === "paper") ||
         (playerSelection === "paper" && computerSelection === "scissors") ||
         (playerSelection === "scissors" && computerSelection === "rock") ) {
-            console.log("You Lose! " + computerSelection + " beats " + playerSelection);
-            return computerScore;
+            let computerWinsMessage = `You Lose! ${computerSelection} beats ${playerSelection}.`;
+            console.log(computerWinsMessage);
+            return computerWinsMessage;
     }
 
     // If user and computer are tied
         // Play reround
     else {
         console.log("You and computer are tied. Please try again!");
-        userScore += 0;
-        computerScore += 0;
+        // userScore += 0;
+        // computerScore += 0;
+        playerSelection = undefined;
+        computerSelection = undefined;
         game();
     }
 }
@@ -72,39 +79,30 @@ function game() {
         console.log(playerSelection);
         let computerSelection = getComputerChoice();
         // console.log(computerSelection);
-        playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+        let result = playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
+        if(result === "You Win! " + playerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + ".") {
+            userScore += 1;
+        } else if(result === "You Lose! " + computerSelection.toLowerCase() + " beats " + playerSelection.toLowerCase() + ".") {
+            computerScore += 1;
+        } else {
+            userScore += 0;
+            computerScore += 0;
+        }
     } else {
         return null;
     }
 }
 // }
 
-// Checks final score and announces the winner
-function scoreChecker() {
-    // If user has more points than computer
-        // Display message that user is the winner
-    if(userScore > computerScore) {
-        let logMessage = console.log("User is the winner!");
-        return logMessage;
-    }
-
-    // If computer has more points than user
-        // Display message that computer is the winner
-    if(computerScore > userScore) {
-        let logMessage = console.log("Computer is the winner!");
-        return logMessage;
-    }
-}
-
 // Main program running
-const results = [];
-let i = 0;
+// const results = [];
+/* let i = 0;
 while(i < 5) {
-    results[i] = game();
-    if(results[i] === null) {
+    let result = game();
+    if(result === null) {
         break;
     } else {
-        if(results[i] == userScore) {
+        if(result == userWinsMessage) {
             userScore += 1;
         } else {
             computerScore += 1;
@@ -117,5 +115,33 @@ while(i < 5) {
     if(i == 5) {
         let finalResult = scoreChecker();
         console.log(finalResult);
+    }
+} */
+
+let i = 0;
+while(i < 5) {
+    let result = game();
+
+    i += 1;
+    if(result === null) {
+        break;
+    }
+        
+    // console.log(results[i]);
+    if(i == 5) {
+        // Checks final score and announces the winner
+        // function scoreChecker() {
+        // If user has more points than computer
+            // Display message that user is the winner
+            if(userScore > computerScore) {
+                console.log("User is the winner!");
+            }
+
+        // If computer has more points than user
+            // Display message that computer is the winner
+            if(computerScore > userScore) {
+                console.log("Computer is the winner!");
+            }
+        // }
     }
 }
