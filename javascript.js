@@ -79,6 +79,9 @@ function game() {
     if(playerSelection != null) {
         playerSelection = selectionChecker(playerSelection.toLowerCase());
         console.log(playerSelection);
+        if(playerSelection === undefined) {
+            return null;
+        }
         let computerSelection = getComputerChoice();
         // console.log(computerSelection);
         let result = playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
