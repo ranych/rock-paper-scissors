@@ -5,15 +5,15 @@ let computerScore = 0;
 // Checks if one of three choices is selected
 function selectionChecker(playerSelection) {
     while(true) {
-        if(playerSelection === "rock" || playerSelection === "paper" || 
-            playerSelection === "scissors" ) {
+        if(playerSelection === "Rock" || playerSelection === "Paper" || 
+            playerSelection === "Scissors" ) {
             return playerSelection;
         } else {
             console.log("Please choose one from the three options provided");
             playerSelection = prompt("Please choose rock, paper, or scissors: ");
             // playerSelection = playerSelection.toLowerCase();
             if(playerSelection != null) {
-                playerSelection = playerSelection.toLowerCase();
+                playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
             } else {
                 break;
             }
@@ -28,7 +28,7 @@ function getComputerChoice() {
     let index = Math.floor(Math.random() * choice.length);
     console.log(index);
     let chosenString = choice[index];
-    console.log(chosenString);
+    // console.log(chosenString);
     return chosenString;
 }
 
@@ -38,9 +38,9 @@ function playRound(playerSelection, computerSelection) {
     chooses paper, then... */
         // User wins. Your selection beats computer selection
         // Add one to user score.
-    if( (playerSelection === "rock" && computerSelection === "scissors") ||
-        (playerSelection === "paper" && computerSelection === "rock") ||
-        (playerSelection === "scissors" && computerSelection === "paper") ) {
+    if( (playerSelection === "Rock" && computerSelection === "Scissors") ||
+        (playerSelection === "Paper" && computerSelection === "Rock") ||
+        (playerSelection === "Scissors" && computerSelection === "Paper") ) {
             let userWinsMessage = `You Win! ${playerSelection} beats ${computerSelection}.`;
             console.log(userWinsMessage);
             return userWinsMessage;
@@ -51,9 +51,9 @@ function playRound(playerSelection, computerSelection) {
     chooses rock, then... */
         // User loses. Computer selection beats your selection
         // Add one to computer score
-    else if((playerSelection === "rock" && computerSelection === "paper") ||
-        (playerSelection === "paper" && computerSelection === "scissors") ||
-        (playerSelection === "scissors" && computerSelection === "rock") ) {
+    else if((playerSelection === "Rock" && computerSelection === "Paper") ||
+        (playerSelection === "Paper" && computerSelection === "Scissors") ||
+        (playerSelection === "Scissors" && computerSelection === "Rock") ) {
             let computerWinsMessage = `You Lose! ${computerSelection} beats ${playerSelection}.`;
             console.log(computerWinsMessage);
             return computerWinsMessage;
@@ -75,17 +75,18 @@ function playRound(playerSelection, computerSelection) {
 function game() {
     let playerSelection = prompt("Please choose rock, paper, or scissors: ");
     if(playerSelection != null) {
-        playerSelection = selectionChecker(playerSelection.toLowerCase());
+        playerSelection = playerSelection.charAt(0).toUpperCase() + playerSelection.slice(1).toLowerCase();
+        playerSelection = selectionChecker(playerSelection);
         console.log(playerSelection);
         if(playerSelection === undefined) {
             return null;
         }
         let computerSelection = getComputerChoice();
-        // console.log(computerSelection);
-        let result = playRound(playerSelection.toLowerCase(), computerSelection.toLowerCase());
-        if(result === "You Win! " + playerSelection.toLowerCase() + " beats " + computerSelection.toLowerCase() + ".") {
+        console.log(computerSelection);
+        let result = playRound(playerSelection, computerSelection);
+        if(result === "You Win! " + playerSelection + " beats " + computerSelection + ".") {
             userScore += 1;
-        } else if(result === "You Lose! " + computerSelection.toLowerCase() + " beats " + playerSelection.toLowerCase() + ".") {
+        } else if(result === "You Lose! " + computerSelection + " beats " + playerSelection + ".") {
             computerScore += 1;
         } else {
             userScore += 0;
