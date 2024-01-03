@@ -65,9 +65,7 @@ function playRound(playerSelection, computerSelection) {
         console.log("You and computer are tied. Please try again!");
         // userScore += 0;
         // computerScore += 0;
-        playerSelection = null;
-        computerSelection = null;
-        game();
+        return;
     }
 }
 
@@ -84,16 +82,18 @@ function game() {
         let computerSelection = getComputerChoice();
         console.log(computerSelection);
         let result = playRound(playerSelection, computerSelection);
-        if(result === "You Win! " + playerSelection + " beats " + computerSelection + ".") {
-            userScore += 1;
-            return userScore;
-        } else if(result === "You Lose! " + computerSelection + " beats " + playerSelection + ".") {
-            computerScore += 1;
-            return computerScore;
-        } else {
+        if(playerSelection === computerSelection) {
             userScore += 0;
             computerScore += 0;
-            return null;
+            game();
+        } else {
+            if(result === "You Win! " + playerSelection + " beats " + computerSelection + ".") {
+                userScore += 1;
+                return userScore;
+            } else if(result === "You Lose! " + computerSelection + " beats " + playerSelection + ".") {
+                computerScore += 1;
+                return computerScore;
+            }
         }
     } else {
         return null;
